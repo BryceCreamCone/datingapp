@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
@@ -7,18 +8,19 @@ import { ValueComponent } from './value/value.component';
 import { NavComponent } from './nav/nav.component';
 
 @NgModule({
-   declarations: [
-      AppComponent,
-      ValueComponent,
-      NavComponent
-   ],
-   imports: [
-      BrowserModule,
-      HttpClientModule
-   ],
-   providers: [],
-   bootstrap: [
-      AppComponent
-   ]
+  declarations: [
+    AppComponent,
+    ValueComponent,
+    NavComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule
+  ],
+  providers: [],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
