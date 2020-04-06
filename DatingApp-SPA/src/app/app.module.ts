@@ -19,6 +19,8 @@ import { MemberDetailsComponent } from './members/member-details/member-details.
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
+import { MemberDetailsResolver } from './_resolvers/member-details.resolver';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -53,7 +55,9 @@ export function tokenGetter() {
     })
   ],
   providers: [
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    MemberDetailsResolver,
+    MemberListResolver
   ],
   bootstrap: [
     AppComponent
