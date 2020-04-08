@@ -4,6 +4,10 @@ img.img-thumbnail {
   margin-bottom: 2px;
 }
 
+.edit-btns {
+  min-width: 100px !important;
+}
+
 .nv-file-over {
   border: 3px dotted #38b44a;
 }
