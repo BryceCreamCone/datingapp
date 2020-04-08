@@ -21,9 +21,11 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 import { MemberDetailsResolver } from './_resolvers/member-details.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -60,10 +62,12 @@ export function tokenGetter() {
     })
   ],
   providers: [
+    AuthGuard,
     ErrorInterceptorProvider,
     MemberDetailsResolver,
     MemberListResolver,
-    MemberEditResolver
+    MemberEditResolver,
+    PreventUnsavedChanges
   ],
   bootstrap: [
     AppComponent
