@@ -2,7 +2,7 @@
   <div class="col-sm-2" *ngFor="let photo of photos">
     <img src="{{photo.url}}" class="img-thumbnail p-1" alt="">
     <div class="mb-2 edit-btns btn-group" *ngIf="!photo.isMain">
-      <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="setMainPhoto(photo)">Main</button>
+      <button type="button" class="btn btn-sm btn-secondary mr-2" (click)="updateMainPhoto(photo)">Main</button>
       <button type="button" class="btn btn-sm btn-danger float-right" (click)="deletePhoto(photo.id)"><i
           class="fa fa-trash-o"></i></button>
     </div>

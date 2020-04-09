@@ -1,19 +1,85 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Sign Up</h2>
   <hr>
 
   <div class="form-group">
-    <input type="text" class="form-control" name="username" placeholder="Username" required
-      [(ngModel)]="model.username">
+    <label class="control-label" style="margin-right:10px">I am a: </label>
+    <label class="radio-inline">
+      <input class="mr-3" type="radio" value="male" formControlName="gender">Male
+    </label>
+    <label class="radio-inline ml-3">
+      <input class="mr-3" type="radio" value="female" formControlName="gender">Female
+    </label>
   </div>
 
   <div class="form-group">
-    <input type="password" class="form-control" name="password" placeholder="password" required
-      [(ngModel)]="model.password">
+    <input type="text" [ngClass]="{'is-invalid': checkFormFieldState('username')}" class="form-control"
+      formControlName="username" placeholder="Username">
+    <div class="invalid-feedback" *ngIf="hasFieldError('username', 'required')">
+      Username Is Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="text" [ngClass]="{'is-invalid': checkFormFieldState('knownAs')}" class="form-control"
+      formControlName="knownAs" placeholder="Known As">
+    <div class="invalid-feedback" *ngIf="hasFieldError('knownAs', 'required')">
+      Known As Field Is Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="text" [ngClass]="{'is-invalid': checkFormFieldState('dateOfBirth')}" class="form-control"
+      formControlName="dateOfBirth" placeholder="Date Of Birth" bsDatepicker>
+    <div class="invalid-feedback" *ngIf="hasFieldError('dateOfBirth', 'required')">
+      Date Of Birth Is Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="text" [ngClass]="{'is-invalid': checkFormFieldState('city')}" class="form-control"
+      formControlName="city" placeholder="City">
+    <div class="invalid-feedback" *ngIf="hasFieldError('city', 'required')">
+      City Is Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="text" [ngClass]="{'is-invalid': checkFormFieldState('country')}" class="form-control"
+      formControlName="country" placeholder="Country">
+    <div class="invalid-feedback" *ngIf="hasFieldError('country', 'required')">
+      Country Is Required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="password" [ngClass]="{'is-invalid': checkFormFieldState('password')}" class="form-control"
+      formControlName="password" placeholder="password">
+    <div class="invalid-feedback" *ngIf="hasFieldError('password', 'required')">
+      Password Is Required
+    </div>
+    <div class="invalid-feedback" *ngIf="hasFieldError('password', 'minlength')">
+      Password must be at least {{findFieldError('password', 'minlength')['requiredLength']}} characters.
+    </div>
+    <div class="invalid-feedback" *ngIf="hasFieldError('password', 'maxlength')">
+      Password cannot exceed {{findFieldError('password', 'maxlength')['requiredLength']}} characters.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="password"
+      [ngClass]="{'is-invalid': checkFormFieldState('confirmPassword') || checkFormState('confirmPassword')}"
+      class="form-control" formControlName="confirmPassword" placeholder="Confirm password">
+    <div class="invalid-feedback" *ngIf="hasFieldError('confirmPassword', 'required')">
+      Password Confirmation is Required
+    </div>
+    <div class="invalid-feedback" *ngIf="hasFormError('mismatch')">
+      Passwords Do Not Match
+    </div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success">Register</button>
+    <button class="btn btn-success" [disabled]="!registerForm.valid">Register</button>
     <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
   </div>
 </form>

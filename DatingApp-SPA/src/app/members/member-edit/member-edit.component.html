@@ -6,6 +6,9 @@
       <div *ngIf="editForm.dirty" class="alert alert-info">
         <strong>Information:</strong> You have made changes. Any unsaved changes will be lost!
       </div>
+      <div *ngIf="!photoUrl" class="alert alert-info">
+        <strong>Information:</strong> Please submit a photo in order for other Members to find you!
+      </div>
     </div>
     <div class="col-sm-4">
       <div class="card">
