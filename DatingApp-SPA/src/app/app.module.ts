@@ -33,7 +33,8 @@ import { MemberDetailsResolver } from './_resolvers/member-details.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
-import { ListResolver } from './_resolvers/lists.resolver';
+import { ListResolver } from './_resolvers/list.resolver';
+import { MessageResolver } from './_resolvers/message.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -83,6 +84,7 @@ export function tokenGetter() {
     MemberListResolver,
     MemberEditResolver,
     ListResolver,
+    MessageResolver,
     PreventUnsavedChanges
   ],
   bootstrap: [
