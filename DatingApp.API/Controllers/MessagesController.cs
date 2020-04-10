@@ -26,19 +26,7 @@ namespace DatingApp.API.Controllers
       _mapper = mapper;
     }
 
-    [HttpGet("{id}", Name = "GetMessage")]
-    public async Task<IActionResult> GetMessage(int userId, int id)
-    {
-      if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-        return Unauthorized();
-
-      var messageFromRepo = await _repo.GetMessage(id);
-      if (messageFromRepo == null) return NotFound();
-      return Ok(messageFromRepo);
-    }
-
     [HttpGet]
-
     public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery]MessageParams messageParams)
     {
       if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -78,6 +66,29 @@ namespace DatingApp.API.Controllers
       }
 
       throw new System.Exception("Failed To Save Message At This Time");
+    }
+
+    [HttpGet("{id}", Name = "GetMessage")]
+    public async Task<IActionResult> GetMessage(int userId, int id)
+    {
+      if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        return Unauthorized();
+
+      var messageFromRepo = await _repo.GetMessage(id);
+      if (messageFromRepo == null) return NotFound();
+      return Ok(messageFromRepo);
+    }
+
+    [HttpGet("thread/{recipientId}")]
+    public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
+    {
+      if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        return Unauthorized();
+
+      var messagesFromRepo = await _repo.GetMessageThread(userId, recipientId);
+      var messageThread = _mapper.Map<IEnumerable<MessageForReturnDto>>(messagesFromRepo);
+
+      return Ok(messageThread);
     }
   }
 }
