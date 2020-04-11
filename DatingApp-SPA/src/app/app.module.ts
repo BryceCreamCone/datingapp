@@ -24,6 +24,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 
@@ -51,6 +52,7 @@ export function tokenGetter() {
     MemberDetailsComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MemberMessagesComponent,
     ListsComponent,
     MessagesComponent
   ],

@@ -3,7 +3,7 @@ import { Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { UserService } from '../_services/user.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Message } from '../_models/message';
 import { AuthService } from '../_services/auth.service';
 
@@ -32,4 +32,5 @@ export class MessageResolver implements Resolve<Message[]> {
         })
       );
   }
+
 }

@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <div *ngIf="messages?.length === 0">
+    <p>No messages yet... Say hello using the message box below!</p>
+  </div>
+
+  <div class="row">
+    <table class="table table-hover table-borderless">
+      <tbody>
+        <tr *ngFor="let message of messages">
+          <td class="user" style="width: 10%;">
+            <div *ngIf="message.senderId != recipientId">
+              <span class="chat-img float-left">
+                <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle user-photo">
+              </span>
+            </div>
+            <div *ngIf="message.senderId == recipientId">
+              <span class="chat-img float-left">
+                <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle user-photo">
+              </span>
+            </div>
+          </td>
+          <td class="message">
+            <blockquote [ngClass]="{sender: message.senderId != recipientId}">{{message.content}}</blockquote>
+          </td>
+          <td>
+            <div class="text-center">
+              <small class="text-muted">
+                <span class="fa fa-clock-o"><br />{{message.messageSent | date:'shortTime'}}</span>
+                <span *ngIf="message.senderId != recipientId && !message.isRead" class="text-danger"><br />( UNREAD
+                  )</span>
+                <span *ngIf="message.senderId != recipientId && message.isRead" class="text-success"><br />READ:
+                  {{message.dateRead | timeago}}</span>
+              </small>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <form #messageForm="ngForm" (ngSubmit)="messageForm.valid && sendMessage()">
+      <div class="input-group">
+        <input type="text" class="form-control input-sm" placeholder="Send a Private Message..."
+          [(ngModel)]="newMessage.content" name="content" required>
+        <div class="input-group-append">
+          <button class="btn btn-primary" [disabled]="!messageForm.valid">Send</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,20 +1,20 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="btn-group">
-      <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Unread" (click)="loadMessages()">
+      <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Unread" (ngModelChange)="loadMessages()">
         <i class="fa fa-envelope"></i> Unread
       </button>
-      <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Inbox" (click)="loadMessages()">
+      <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Inbox" (ngModelChange)="loadMessages()">
         <i class="fa fa-envelope-open"></i> Inbox
       </button>
-      <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Outbox" (click)="loadMessages()">
+      <button class="btn btn-primary" [(ngModel)]="messageContainer" btnRadio="Outbox" (ngModelChange)="loadMessages()">
         <i class="fa fa-paper-plane"></i> Outbox
       </button>
     </div>
   </div>
 
   <div class="row justify-content-center" *ngIf="messages.length == 0">
-    <h3 class="m-3">No messages</h3>
+    <h3 class="m-3">No Unread Messages</h3>
   </div>
 
   <div class="row" *ngIf="messages.length > 0">
@@ -29,21 +29,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let message of messages" [routerLink]="['/members', 
-        messageContainer == 'Outbox' ? message.recipientId : message.senderId]">
+        routeToMember(message)]" [queryParams]=" {tab: 3}" [ngClass]="{'table-dark': !message.isRead}">
           <td>
-            <div *ngIf="messageContainer != 'Outbox'">
-              <img src={{message?.senderPhotoUrl}} class="img-circle rounded-circle mr-1 user-photo">
-              <strong>{{message.senderKnownAs}}</strong>
-            </div>
-            <div *ngIf="messageContainer == 'Outbox'">
-              <img src={{message?.recipientPhotoUrl}} class="img-circle rounded-circle mr-1 user-photo">
-              <strong>{{message.recipientKnownAs}}</strong>
-            </div>
+            <img src={{showInfo(message)?.photoUrl}} class="img-circle rounded-circle mr-1 user-photo">
+            <strong>{{showInfo(message)?.knownAs}}</strong>
           </td>
           <td>{{message.content}}</td>
           <td>{{message.messageSent | timeago}}</td>
           <td>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-danger" (click)="$event.stopPropagation()"
+              (click)="deleteMessage(message.id)">Delete</button>
           </td>
         </tr>
       </tbody>
