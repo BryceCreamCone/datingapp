@@ -40,4 +40,11 @@ export class MemberMessagesComponent implements OnInit {
       }, error => this.alertify.error(error));
   }
 
+  isOver24hoursOld?(message: Message) {
+    const oneDay = 1000 * 60 * 60;
+    const now = Date.now();
+    const sentTime = new Date(message.messageSent.valueOf()).valueOf();
+    return ((now - sentTime) / oneDay >= 24);
+  }
+
 }

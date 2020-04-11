@@ -36,7 +36,6 @@ export class MessagesComponent implements OnInit {
       this.pagination.currentPage,
       this.pagination.itemsPerPage,
       this.messageContainer).subscribe((res) => {
-        console.log(res.result);
         this.messages = res.result;
         this.pagination = res.pagination;
       }, error => this.alertify.error(error));

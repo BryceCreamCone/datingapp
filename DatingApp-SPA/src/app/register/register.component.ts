@@ -86,18 +86,6 @@ export class RegisterComponent implements OnInit {
             }, error => this.alertify.error(error));
         });
     }
-    // this.authService.register(this.model).subscribe(() => {
-    //   this.alertify.success('Registration successful');
-    //   this.authService.login(this.model).subscribe(next => {
-    //     this.alertify.success('Automatically Logged In');
-    //     this.router.navigate(['/members']);
-    //   }, error => {
-    //     this.alertify.error(error);
-    //   });
-    // }, error => {
-    //   this.alertify.error(error);
-    // });
-    console.log(this.registerForm.value);
   }
 
   cancel() {

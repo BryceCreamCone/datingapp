@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/user';
 import { Pagination, PaginatedResult } from '../_models/pagination';
-import { AuthService } from '../_services/auth.service';
 import { UserService } from '../_services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
@@ -18,7 +17,6 @@ export class ListsComponent implements OnInit {
   showBoundaryLinks = true;
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
     private alertify: AlertifyService

@@ -26,6 +26,7 @@
             <div class="text-center">
               <small class="text-muted">
                 <span class="fa fa-clock-o"><br />{{message.messageSent | date:'shortTime'}}</span>
+                <span *ngIf="isOver24hoursOld(message)"><br />{{message.messageSent | date }}</span>
                 <span *ngIf="message.senderId != recipientId && !message.isRead" class="text-danger"><br />( UNREAD
                   )</span>
                 <span *ngIf="message.senderId != recipientId && message.isRead" class="text-success"><br />READ:
