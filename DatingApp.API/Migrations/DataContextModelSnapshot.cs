@@ -152,20 +152,6 @@ namespace DatingApp.API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DatingApp.API.Models.Value", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Values");
-                });
-
             modelBuilder.Entity("DatingApp.API.Models.Like", b =>
                 {
                     b.HasOne("DatingApp.API.Models.User", "Likee")
