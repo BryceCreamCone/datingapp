@@ -33,7 +33,7 @@ namespace DatingApp.API
 
     public void ConfigureProductionServices(IServiceCollection services)
     {
-      services.AddDbContext<DataContext>(x => x.UseMySql
+      services.AddDbContext<DataContext>(x => x.UseSqlServer
       (Configuration.GetConnectionString("DefaultConnection")));
 
       ConfigureServices(services);
