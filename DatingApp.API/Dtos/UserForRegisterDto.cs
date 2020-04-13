@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DatingApp.API.Dtos
@@ -14,20 +15,20 @@ namespace DatingApp.API.Dtos
     [Required]
     public string KnownAs { get; set; }
     [Required]
-    public System.DateTime DateOfBirth { get; set; }
+    public DateTimeOffset DateOfBirth { get; set; }
     [Required]
     public string City { get; set; }
     [Required]
     public string Country { get; set; }
     [Required]
-    public System.DateTime Created { get; set; }
+    public DateTimeOffset Created { get; set; }
     [Required]
-    public System.DateTime LastActive { get; set; }
+    public DateTimeOffset LastActive { get; set; }
 
     public UserForRegisterDto()
     {
-      Created = System.DateTime.Now;
-      LastActive = System.DateTime.Now;
+      Created = DateTimeOffset.Now;
+      LastActive = DateTimeOffset.Now;
     }
   }
 }

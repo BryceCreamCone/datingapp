@@ -44,14 +44,14 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DateRead")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset?>("DateRead")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<bool>("IsRead")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("MessageSent")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("MessageSent")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<bool>("RecipientDeleted")
                         .HasColumnType("bit");
@@ -81,8 +81,8 @@ namespace DatingApp.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateAdded")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("DateAdded")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -119,8 +119,8 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -137,8 +137,8 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("KnownAs")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastActive")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("LastActive")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("LookingFor")
                         .HasColumnType("nvarchar(max)");
