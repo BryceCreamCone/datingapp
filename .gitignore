@@ -1,3 +1,4 @@
 Migrations/
 Migrations_MySQL/
 ConnectionStrings.txt
+.vscode/
